@@ -1,17 +1,37 @@
 import React, { Component } from "react";
 import "./App.css";
-import Display from "./components/Display";
-import Form from "./components/Form";
+import Display from "./components/Display.jsx";
+import Form from "./components/Form.jsx";
 
 export default class App extends Component {
   state = {
     name: "Charles",
     sigOthName: "Catherine",
-    bday: new Date("1992-12-18"),
-    sigOthBday: new Date("1994-10-12"),
-    dateMet: new Date("2014-02-19"),
-    dateDating: new Date("2014-03-10"),
-    dateMarried: new Date("2018-01-06")
+    bday: {
+      day: 18,
+      month: "December",
+      year: 1992
+    },
+    sigOthBday: {
+      day: 12,
+      month: "November",
+      year: 1994
+    },
+    dateMet: {
+      day: 19,
+      month: "February",
+      year: 2014
+    },
+    dateDating: {
+      day: 10,
+      month: "March",
+      year: 2014
+    },
+    dateMarried: {
+      day: 6,
+      month: "January",
+      year: 2018
+    }
   }
   render() {
     return (
