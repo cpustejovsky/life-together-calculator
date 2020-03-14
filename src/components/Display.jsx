@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Col, Row } from "react-bootstrap";
+import "../App.scss";
 
 export default class Display extends Component {
   render() {
@@ -25,9 +27,9 @@ export default class Display extends Component {
       meetDate === null
     ) {
       return (
-        <h1>
-          Please provide at least two names, two birthdays, and a meeting day.
-        </h1>
+        <h3 class="error">
+          Please provide at least <strong>two names</strong>, <strong>two birthdays</strong>, and <strong>the date y'all met</strong>.
+        </h3>
       );
     }
     if (
@@ -40,15 +42,23 @@ export default class Display extends Component {
       marriedDate === null
     ) {
       return (
-        <div>
-          
-
-          <p>
-            {yourName} has known {soName} <strong>{percent_user}</strong> of their lives.
-          </p>
-          <p>
-            {soName} has known {yourName} <strong>{percent_so}</strong> of their lives.
-          </p>
+        <div className="display">
+          <Row>
+            <Col md={6}>
+              {" "}
+              <p>
+                {yourName} has known {soName} <strong>{percent_user}</strong> of
+                their lives.
+              </p>
+            </Col>
+            <Col md={6}>
+              {" "}
+              <p>
+                {soName} has known {yourName} <strong>{percent_so}</strong> of
+                their lives.
+              </p>
+            </Col>
+          </Row>
           <p>
             They met <strong>{age_meet}</strong> days ago.
           </p>
@@ -65,13 +75,23 @@ export default class Display extends Component {
       marriedDate === null
     ) {
       return (
-        <div>
-          <p>
-            {yourName} has known {soName} <strong>{percent_user}</strong> of their lives.
-          </p>
-          <p>
-            {soName} has known {yourName} <strong>{percent_so}</strong> of their lives.
-          </p>
+        <div className="display">
+          <Row>
+            <Col md={6}>
+              {" "}
+              <p>
+                {yourName} has known {soName} <strong>{percent_user}</strong> of
+                their lives.
+              </p>
+            </Col>
+            <Col md={6}>
+              {" "}
+              <p>
+                {soName} has known {yourName} <strong>{percent_so}</strong> of
+                their lives.
+              </p>
+            </Col>
+          </Row>
           <p>
             They met <strong>{age_meet}</strong> days ago.
           </p>
@@ -91,13 +111,23 @@ export default class Display extends Component {
       marriedDate !== null
     ) {
       return (
-        <div>
-          <p>
-            {yourName} has known {soName} <strong>{percent_user}</strong> of their lives.
-          </p>
-          <p>
-            {soName} has known {yourName} <strong>{percent_so}</strong> of their lives.
-          </p>
+        <div className="display">
+          <Row>
+            <Col md={6}>
+              {" "}
+              <p>
+                {yourName} has known {soName} <strong>{percent_user}</strong> of
+                their lives.
+              </p>
+            </Col>
+            <Col md={6}>
+              {" "}
+              <p>
+                {soName} has known {yourName} <strong>{percent_so}</strong> of
+                their lives.
+              </p>
+            </Col>
+          </Row>
           <p>
             They met <strong>{age_meet}</strong> days ago.
           </p>

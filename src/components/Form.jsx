@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { Col, Row } from "react-bootstrap";
 export default class Form extends Component {
   data = {
     yourName: null,
@@ -51,46 +51,63 @@ export default class Form extends Component {
     return (
       <div>
         <form onSubmit={e => this.onFormSubmit(e)}>
+          <Row>
+            <Col md={6}>
+              {" "}
+              <div className="form-group">
+                <p>Your Name</p>
+                <input
+                  onChange={e => this.onInputChange(e)}
+                  className="form-control"
+                  type="text"
+                  name="yourName"
+                  placeholder="Aragorn"
+                />
+              </div>
+            </Col>
+            <Col md={6}>
+              {" "}
+              <div className="form-group">
+                <p>Other Person's Name</p>
+                <input
+                  onChange={e => this.onInputChange(e)}
+                  className="form-control"
+                  type="text"
+                  name="soName"
+                  placeholder="Arwen"
+                />
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col md={6}>
+              {" "}
+              <div className="form-group">
+                <p>Your Birthday</p>
+                <input
+                  onChange={e => this.onInputChange(e)}
+                  className="form-control"
+                  type="date"
+                  name="yourBday"
+                />
+              </div>
+            </Col>
+            <Col md={6}>
+              {" "}
+              <div className="form-group">
+                <p>Other Person's Birthday</p>
+                <input
+                  onChange={e => this.onInputChange(e)}
+                  className="form-control"
+                  type="date"
+                  name="soBday"
+                />
+              </div>
+            </Col>
+          </Row>
+
           <div className="form-group">
-            <p>Your Name</p>
-            <input
-              onChange={e => this.onInputChange(e)}
-              className="form-control"
-              type="text"
-              name="yourName"
-              placeholder="Aragorn"
-            />
-          </div>
-          <div className="form-group">
-            <p>Your Significant Other's Name</p>
-            <input
-              onChange={e => this.onInputChange(e)}
-              className="form-control"
-              type="text"
-              name="soName"
-              placeholder="Arwen"
-            />
-          </div>
-          <div className="form-group">
-            <p>Your Birthday</p>
-            <input
-              onChange={e => this.onInputChange(e)}
-              className="form-control"
-              type="date"
-              name="yourBday"
-            />
-          </div>
-          <div className="form-group">
-            <p>Your Significant Other's Birthday</p>
-            <input
-              onChange={e => this.onInputChange(e)}
-              className="form-control"
-              type="date"
-              name="soBday"
-            />
-          </div>
-          <div className="form-group">
-            <p>Date Y'all Met</p>
+            <p>Date Met</p>
             <input
               onChange={e => this.onInputChange(e)}
               className="form-control"
@@ -99,7 +116,7 @@ export default class Form extends Component {
             />
           </div>
           <div className="form-group">
-            <p>Date Y'all Started Dating</p>
+            <p>Date Started Dating (If Applicable)</p>
             <input
               onChange={e => this.onInputChange(e)}
               className="form-control"
@@ -108,7 +125,7 @@ export default class Form extends Component {
             />
           </div>
           <div className="form-group">
-            <p>Date Y'all Were Married (Leave blank if not married)</p>
+            <p>Date Married (If Applicable)</p>
             <input
               onChange={e => this.onInputChange(e)}
               className="form-control"
