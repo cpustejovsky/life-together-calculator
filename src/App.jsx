@@ -21,27 +21,27 @@ export default class App extends Component {
     return days;
   };
 
-  now = new Date();
-
-  age_user = this.millisToDays(this.now - new Date(this.state.data.yourBday));
-  age_so = this.millisToDays(this.now - new Date(this.state.data.soBday));
-  age_meet = this.millisToDays(this.now - new Date(this.state.data.meetDate));
-  age_dating = this.millisToDays(
-    this.now - new Date(this.state.data.datingDate)
-  );
-  age_married = this.millisToDays(
-    this.now - new Date(this.state.data.marriedDate)
-  );
-  percent_user = ((this.age_meet / this.age_user) * 100).toFixed(2) + "%";
-  percent_so = ((this.age_meet / this.age_so) * 100).toFixed(2) + "%";
-
   handleUpdate = data => {
     this.setState({ data: data });
   };
   render() {
+
     console.log(this.state.data);
-    console.log(new Date("1992-12-18"));
-    console.log(this.age_meet);
+    
+    let now = new Date();
+
+    let age_user = this.millisToDays(now - new Date(this.state.data.yourBday));
+    let age_so = this.millisToDays(now - new Date(this.state.data.soBday));
+    let age_meet = this.millisToDays(now - new Date(this.state.data.meetDate));
+    let age_dating = this.millisToDays(
+      now - new Date(this.state.data.datingDate)
+    );
+    let age_married = this.millisToDays(
+      now - new Date(this.state.data.marriedDate)
+    );
+    let percent_user = ((age_meet / age_user) * 100).toFixed(2) + "%";
+    let percent_so = ((age_meet / age_so) * 100).toFixed(2) + "%";
+    
     return (
       <div>
         <Container className="view">
@@ -52,17 +52,17 @@ export default class App extends Component {
           </p>
           <Display
             data={this.state.data}
-            age_meet={this.age_meet}
-            age_dating={this.age_dating}
-            age_married={this.age_married}
-            percent_user={this.percent_user}
-            percent_so={this.percent_so}
+            age_meet={age_meet}
+            age_dating={age_dating}
+            age_married={age_married}
+            percent_user={percent_user}
+            percent_so={percent_so}
           />
           <h2>Try it yourself</h2>
           <hr />
           <Form onUpdate={this.handleUpdate} />
           <footer className="footer">
-            <a href="https://cpustejovsky.com/" rel="noreferrer noopener">Cpustejovsky <i class="far fa-thumbs-up"></i>,{" "}
+            <a href="https://cpustejovsky.com/" rel="noreferrer noopener">Cpustejovsky <i className="far fa-thumbs-up"></i>,{" "}
             {new Date().getFullYear()}</a>
           </footer>
         </Container>

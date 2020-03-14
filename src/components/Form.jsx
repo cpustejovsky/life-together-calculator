@@ -44,7 +44,6 @@ export default class Form extends Component {
   }
   handleDataChange = data => {
     data = this.data;
-    console.log(data);
     this.props.onUpdate(data);
   };
   render() {
