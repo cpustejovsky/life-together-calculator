@@ -1,0 +1,10 @@
+.view {
+  margin: 5vh auto;
+  max-width: 600px;
+}
+.display {
+  & p {
+    margin-bottom: .5rem;
+  }
+  padding-bottom: 2rem 
+}
