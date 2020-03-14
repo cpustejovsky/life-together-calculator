@@ -46,6 +46,10 @@ export default class App extends Component {
       <div>
         <Container className="view">
           <h1 className="title">Life Together Calculator</h1>
+          <p>
+            Add some mathematical precision to your friendship || relationship
+            || marriage.
+          </p>
           <Display
             data={this.state.data}
             age_meet={this.age_meet}
@@ -54,7 +58,13 @@ export default class App extends Component {
             percent_user={this.percent_user}
             percent_so={this.percent_so}
           />
+          <h2>Try it yourself</h2>
+          <hr />
           <Form onUpdate={this.handleUpdate} />
+          <footer className="footer">
+            <a href="https://cpustejovsky.com/" rel="noreferrer noopener">Cpustejovsky <i class="far fa-thumbs-up"></i>,{" "}
+            {new Date().getFullYear()}</a>
+          </footer>
         </Container>
       </div>
     );
