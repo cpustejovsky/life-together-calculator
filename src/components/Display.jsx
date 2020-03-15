@@ -44,27 +44,27 @@ export default class Display extends Component {
       marriedDate === null
     ) {
       return (
-        <div className="display">
-          <Row>
-            <Col md={6}>
-              {" "}
-              <p>
-                {yourName} has known {soName} <strong>{percent_user}</strong> of
-                their lives.
-              </p>
-            </Col>
-            <Col md={6}>
-              {" "}
-              <p>
-                {soName} has known {yourName} <strong>{percent_so}</strong> of
-                their lives.
-              </p>
-            </Col>
-          </Row>
-          <p>
-            They met <strong>{age_meet}</strong> days ago.
-          </p>
-        </div>
+        <Row className="display">
+          <Col md={5} className="display__box">
+            {" "}
+            <p>
+              {yourName} has known {soName} <strong>{percent_user}</strong> of
+              their lives.
+            </p>
+          </Col>
+          <Col md={5} className="display__box">
+            {" "}
+            <p>
+              {soName} has known {yourName} <strong>{percent_so}</strong> of
+              their lives.
+            </p>
+          </Col>
+          <Col md={6} className="display__box">
+            <p>
+              They met <strong>{age_meet}</strong> days ago.
+            </p>
+          </Col>
+        </Row>
       );
     }
     if (
@@ -77,30 +77,30 @@ export default class Display extends Component {
       marriedDate === null
     ) {
       return (
-        <div className="display">
-          <Row>
-            <Col md={6}>
-              {" "}
-              <p>
-                {yourName} has known {soName} <strong>{percent_user}</strong> of
-                their lives.
-              </p>
-            </Col>
-            <Col md={6}>
-              {" "}
-              <p>
-                {soName} has known {yourName} <strong>{percent_so}</strong> of
-                their lives.
-              </p>
-            </Col>
-          </Row>
-          <p>
-            They met <strong>{age_meet}</strong> days ago.
-          </p>
-          <p>
-            They started dating <strong>{age_dating} days ago.</strong>
-          </p>
-        </div>
+        <Row className="display">
+          <Col md={5} className="display__box">
+            {" "}
+            <p>
+              {yourName} has known {soName} <strong>{percent_user}</strong> of
+              their lives.
+            </p>
+          </Col>
+          <Col md={5} className="display__box">
+            {" "}
+            <p>
+              {soName} has known {yourName} <strong>{percent_so}</strong> of
+              their lives.
+            </p>
+          </Col>
+          <Col md={6} className="display__box">
+            <p>
+              They met <strong>{age_meet}</strong> days ago.
+            </p>
+            <p>
+              They started dating <strong>{age_dating}</strong> days ago.
+            </p>
+          </Col>
+        </Row>
       );
     }
     if (
