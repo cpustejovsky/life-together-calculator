@@ -1,5 +1,6 @@
 # Life Together Calculator
 Add some mathematical precision to your friendship || relationship || marriage.
+[Link to Calculator](https://life-together-calculator.herokuapp.com/)
 
 ## To-Dos 
 ### thanks to [Bob Elwell (relwell)](https://github.com/relwell) for the recommendations
