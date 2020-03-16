@@ -4,7 +4,7 @@ import "../App.scss";
 
 export default class Display extends Component {
   render() {
-    let {
+    const {
       yourName,
       soName,
       yourBday,
@@ -13,47 +13,46 @@ export default class Display extends Component {
       datingDate,
       marriedDate
     } = this.props.data;
-    let age_meet = this.props.age_meet;
-    let age_dating = this.props.age_dating;
-    let age_married = this.props.age_married;
-    let percent_user = this.props.percent_user;
-    let percent_so = this.props.percent_so;
+    const age_meet = this.props.age_meet;
+    const age_dating = this.props.age_dating;
+    const age_married = this.props.age_married;
+    const percent_user = this.props.percent_user;
+    const percent_so = this.props.percent_so;
 
-    const insufficientInputs =
-      yourName === null ||
-      soName === null ||
-      yourBday === null ||
-      soBday === null ||
-      meetDate === null;
+    const inputs = {
+      insufficient:
+        yourName === null ||
+        soName === null ||
+        yourBday === null ||
+        soBday === null ||
+        meetDate === null,
+      meeting:
+        yourName !== null &&
+        soName !== null &&
+        yourBday !== null &&
+        soBday !== null &&
+        meetDate !== null &&
+        datingDate === null &&
+        marriedDate === null,
+      dating:
+        yourName !== null &&
+        soName !== null &&
+        yourBday !== null &&
+        soBday !== null &&
+        meetDate !== null &&
+        datingDate !== null &&
+        marriedDate === null,
+      married:
+        yourName !== null &&
+        soName !== null &&
+        yourBday !== null &&
+        soBday !== null &&
+        meetDate !== null &&
+        datingDate !== null &&
+        marriedDate !== null
+    };
 
-    const meetingInput =
-      yourName !== null &&
-      soName !== null &&
-      yourBday !== null &&
-      soBday !== null &&
-      meetDate !== null &&
-      datingDate === null &&
-      marriedDate === null;
-
-    const datingInput =
-      yourName !== null &&
-      soName !== null &&
-      yourBday !== null &&
-      soBday !== null &&
-      meetDate !== null &&
-      datingDate !== null &&
-      marriedDate === null;
-
-    const marriedInput =
-      yourName !== null &&
-      soName !== null &&
-      yourBday !== null &&
-      soBday !== null &&
-      meetDate !== null &&
-      datingDate !== null &&
-      marriedDate !== null;
-
-    if (insufficientInputs) {
+    if (inputs.insufficient) {
       return (
         <h3 class="error">
           Please provide at least <strong>two names</strong>,{" "}
@@ -62,7 +61,7 @@ export default class Display extends Component {
         </h3>
       );
     }
-    if (meetingInput) {
+    if (inputs.meeting) {
       return (
         <Row className="display">
           <Col md={5} className="display__box">
@@ -87,7 +86,7 @@ export default class Display extends Component {
         </Row>
       );
     }
-    if (datingInput) {
+    if (inputs.dating) {
       return (
         <Row className="display">
           <Col md={5} className="display__box">
@@ -115,7 +114,7 @@ export default class Display extends Component {
         </Row>
       );
     }
-    if (marriedInput) {
+    if (inputs.married) {
       return (
         <Row className="display">
           <Col md={5} className="display__box">
