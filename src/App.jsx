@@ -23,11 +23,9 @@ export default class App extends Component {
 
   handleUpdate = data => {
     this.setState({ data: data });
+    window.scrollTo(0, 0);
   };
   render() {
-
-    console.log(this.state.data);
-    
     let now = new Date();
 
     let age_user = this.millisToDays(now - new Date(this.state.data.yourBday));
@@ -41,7 +39,7 @@ export default class App extends Component {
     );
     let percent_user = ((age_meet / age_user) * 100).toFixed(2) + "%";
     let percent_so = ((age_meet / age_so) * 100).toFixed(2) + "%";
-    
+
     return (
       <div>
         <Container className="view">
@@ -62,8 +60,10 @@ export default class App extends Component {
           <hr />
           <Form onUpdate={this.handleUpdate} />
           <footer className="footer">
-            <a href="https://cpustejovsky.com/" rel="noreferrer noopener">Cpustejovsky <i className="far fa-thumbs-up"></i>,{" "}
-            {new Date().getFullYear()}</a>
+            <a href="https://cpustejovsky.com/" rel="noreferrer noopener">
+              Cpustejovsky <i className="far fa-thumbs-up"></i>,{" "}
+              {new Date().getFullYear()}
+            </a>
           </footer>
         </Container>
       </div>
