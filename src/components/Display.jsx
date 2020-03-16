@@ -19,13 +19,41 @@ export default class Display extends Component {
     let percent_user = this.props.percent_user;
     let percent_so = this.props.percent_so;
 
-    if (
+    const insufficientInputs =
       yourName === null ||
       soName === null ||
       yourBday === null ||
       soBday === null ||
-      meetDate === null
-    ) {
+      meetDate === null;
+
+    const meetingInput =
+      yourName !== null &&
+      soName !== null &&
+      yourBday !== null &&
+      soBday !== null &&
+      meetDate !== null &&
+      datingDate === null &&
+      marriedDate === null;
+
+    const datingInput =
+      yourName !== null &&
+      soName !== null &&
+      yourBday !== null &&
+      soBday !== null &&
+      meetDate !== null &&
+      datingDate !== null &&
+      marriedDate === null;
+
+    const marriedInput =
+      yourName !== null &&
+      soName !== null &&
+      yourBday !== null &&
+      soBday !== null &&
+      meetDate !== null &&
+      datingDate !== null &&
+      marriedDate !== null;
+
+    if (insufficientInputs) {
       return (
         <h3 class="error">
           Please provide at least <strong>two names</strong>,{" "}
@@ -34,15 +62,7 @@ export default class Display extends Component {
         </h3>
       );
     }
-    if (
-      yourName !== null &&
-      soName !== null &&
-      yourBday !== null &&
-      soBday !== null &&
-      meetDate !== null &&
-      datingDate === null &&
-      marriedDate === null
-    ) {
+    if (meetingInput) {
       return (
         <Row className="display">
           <Col md={5} className="display__box">
@@ -67,15 +87,7 @@ export default class Display extends Component {
         </Row>
       );
     }
-    if (
-      yourName !== null &&
-      soName !== null &&
-      yourBday !== null &&
-      soBday !== null &&
-      meetDate !== null &&
-      datingDate !== null &&
-      marriedDate === null
-    ) {
+    if (datingInput) {
       return (
         <Row className="display">
           <Col md={5} className="display__box">
@@ -103,15 +115,7 @@ export default class Display extends Component {
         </Row>
       );
     }
-    if (
-      yourName !== null &&
-      soName !== null &&
-      yourBday !== null &&
-      soBday !== null &&
-      meetDate !== null &&
-      datingDate !== null &&
-      marriedDate !== null
-    ) {
+    if (marriedInput) {
       return (
         <Row className="display">
           <Col md={5} className="display__box">
