@@ -11,12 +11,12 @@ const Display = (props) => {
     meetDate,
     datingDate,
     marriedDate,
+    ageMeet,
+    ageDating,
+    ageMarried,
+    percentUser,
+    percentSo,
   } = props;
-  const ageMeet = props.ageMeet;
-  const ageDating = props.ageDating;
-  const ageMarried = props.ageMarried;
-  const percentUser = props.percentUser;
-  const percentSo = props.percentSo;
 
   const inputs = {
     insufficient:
