@@ -51,6 +51,11 @@ const App = () => {
           ageMarried={ageMarried}
           percentUser={percentUser}
           percentSo={percentSo}
+          yourBday={yourName}
+          soBday={soBday}
+          meetDate={meetDate}
+          datingDate={datingDate}
+          marriedDate={marriedDate}
         />
         <h2>Try it yourself</h2>
         <hr />

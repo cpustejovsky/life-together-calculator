@@ -17,102 +17,25 @@ const Display = (props) => {
     percentUser,
     percentSo,
   } = props;
-
-  const inputs = {
-    insufficient:
-      yourName === null ||
-      soName === null ||
-      yourBday === null ||
-      soBday === null ||
-      meetDate === null,
-    meeting:
-      yourName !== null &&
-      soName !== null &&
-      yourBday !== null &&
-      soBday !== null &&
-      meetDate !== null &&
-      datingDate === null &&
-      marriedDate === null,
-    dating:
-      yourName !== null &&
-      soName !== null &&
-      yourBday !== null &&
-      soBday !== null &&
-      meetDate !== null &&
-      datingDate !== null &&
-      marriedDate === null,
-    married:
-      yourName !== null &&
-      soName !== null &&
-      yourBday !== null &&
-      soBday !== null &&
-      meetDate !== null &&
-      datingDate !== null &&
-      marriedDate !== null,
-  };
-
-  if (inputs.insufficient) {
-    return (
-      <h3 class="error">
-        Please provide at least <strong>two names</strong>,{" "}
-        <strong>two birthdays</strong>, and <strong>the date y'all met</strong>.
-      </h3>
-    );
-  }
-  if (inputs.meeting) {
-    return (
-      <Row className="display">
-        <Col md={5} className="display__box">
-          {" "}
-          <p>
-            {yourName} has known {soName} <strong>{percentUser}</strong> of
-            their lives.
-          </p>
-        </Col>
-        <Col md={5} className="display__box">
-          {" "}
-          <p>
-            {soName} has known {yourName} <strong>{percentSo}</strong> of their
-            lives.
-          </p>
-        </Col>
-        <Col md={6} className="display__box">
-          <p>
-            They met <strong>{ageMeet}</strong> days ago.
-          </p>
-        </Col>
-      </Row>
-    );
-  }
-  if (inputs.dating) {
-    return (
-      <Row className="display">
-        <Col md={5} className="display__box">
-          {" "}
-          <p>
-            {yourName} has known {soName} <strong>{percentUser}</strong> of
-            their lives.
-          </p>
-        </Col>
-        <Col md={5} className="display__box">
-          {" "}
-          <p>
-            {soName} has known {yourName} <strong>{percentSo}</strong> of their
-            lives.
-          </p>
-        </Col>
-        <Col md={6} className="display__box">
-          <p>
-            They met <strong>{ageMeet}</strong> days ago.
-          </p>
-          <p>
-            They started dating <strong>{ageDating}</strong> days ago.
-          </p>
-        </Col>
-      </Row>
-    );
-  }
-  if (inputs.married) {
+  const meeting = [yourName, soName, yourBday, soBday, meetDate];
+  const dating = [yourName, soName, yourBday, soBday, meetDate, datingDate];
+  const married = [
+    yourName,
+    soName,
+    yourBday,
+    soBday,
+    meetDate,
+    datingDate,
+    marriedDate,
+  ];
+  console.log(meeting);
+  console.log(dating);
+  console.log(married);
+  let insufficientInput = meeting.some((el) => !el);
+  let meetingInput = (meeting.every((el) => el));
+  let datingInput = (dating.every((el) => el));
+  let marriedInput = (married.every((el) => el));
+  if (marriedInput) {
     return (
       <Row className="display">
         <Col md={5} className="display__box">
@@ -141,6 +64,71 @@ const Display = (props) => {
           </p>
         </Col>
       </Row>
+    );
+  } else if (datingInput) {
+    return (
+      <Row className="display">
+        <Col md={5} className="display__box">
+          {" "}
+          <p>
+            {yourName} has known {soName} <strong>{percentUser}</strong> of
+            their lives.
+          </p>
+        </Col>
+        <Col md={5} className="display__box">
+          {" "}
+          <p>
+            {soName} has known {yourName} <strong>{percentSo}</strong> of their
+            lives.
+          </p>
+        </Col>
+        <Col md={6} className="display__box">
+          <p>
+            They met <strong>{ageMeet}</strong> days ago.
+          </p>
+          <p>
+            They started dating <strong>{ageDating}</strong> days ago.
+          </p>
+        </Col>
+      </Row>
+    );
+  } else if (meetingInput) {
+    return (
+      <Row className="display">
+        <Col md={5} className="display__box">
+          {" "}
+          <p>
+            {yourName} has known {soName} <strong>{percentUser}</strong> of
+            their lives.
+          </p>
+        </Col>
+        <Col md={5} className="display__box">
+          {" "}
+          <p>
+            {soName} has known {yourName} <strong>{percentSo}</strong> of their
+            lives.
+          </p>
+        </Col>
+        <Col md={6} className="display__box">
+          <p>
+            They met <strong>{ageMeet}</strong> days ago.
+          </p>
+        </Col>
+      </Row>
+    );
+  } else if (insufficientInput) {
+    return (
+      <h3 className="error">
+        Please provide at least <strong>two names</strong>,{" "}
+        <strong>two birthdays</strong>, and <strong>the date y'all met</strong>.
+      </h3>
+    );
+  } else {
+    return (
+      <h3 className="error">
+        Something went wrong. Please contact cpustejovsky about this issue (link
+        in the footer)
+      </h3>
     );
   }
 };
