@@ -28,9 +28,6 @@ const Display = (props) => {
     datingDate,
     marriedDate,
   ];
-  console.log(meeting);
-  console.log(dating);
-  console.log(married);
   let insufficientInput = meeting.some((el) => !el);
   let meetingInput = (meeting.every((el) => el));
   let datingInput = (dating.every((el) => el));
