@@ -4,7 +4,7 @@ Add some mathematical precision to your friendship || relationship || marriage.
 
 ## To-Dos 
 ### thanks to [Bob Elwell (relwell)](https://github.com/relwell) for the recommendations
-1. Rewrite class as functional component using hooks (`useState` and `useEffect` hooks).
+1. ~~Rewrite class as functional component using hooks (`useState` and `useEffect` hooks).~~
 2. use `const` instead of `let` for unmutated variables.
 3. consistently use camelCase or snake_case.
 4. destructure `this.props` into render call as `const` variables at the top of the function.
