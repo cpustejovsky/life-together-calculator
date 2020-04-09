@@ -18,11 +18,16 @@ const App = () => {
     return days;
   };
 
-  useEffect(() => {
-    // setState({ data: data });
-    window.scrollTo(0, 0);
-    return () => {};
-  }, []);
+  const onUpdate = (data) => {
+    setYourName(data.yourName)
+    setSoName(data.soName)
+    setYourBday(data.yourBday)
+    setSoBday(data.soBday)
+    setMeetDate(data.meetDate)
+    setDatingDate(data.datingDate)
+    setMarriedDate(data.marriedDate)
+
+  }
 
   let now = new Date();
 
@@ -53,7 +58,7 @@ const App = () => {
         />
         <h2>Try it yourself</h2>
         <hr />
-        <Form />
+        <Form onUpdate={onUpdate}/>
         <footer className="footer">
           <a href="https://cpustejovsky.com/" rel="noreferrer noopener">
             Cpustejovsky <i className="far fa-thumbs-up"></i>,{" "}
