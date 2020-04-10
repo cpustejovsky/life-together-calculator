@@ -1,5 +1,5 @@
 import React from "react";
-import _ from "lodash"
+import _ from "lodash";
 import { Col, Row } from "react-bootstrap";
 import "../App.scss";
 
@@ -30,9 +30,9 @@ const Display = (props) => {
     marriedDate,
   ];
   let insufficientInput = meeting.some((el) => _.isEmpty(el));
-  let meetingInput = (meeting.every((el) => !(_.isEmpty(el))));
-  let datingInput = (dating.every((el) => !(_.isEmpty(el))));
-  let marriedInput = (married.every((el) => !(_.isEmpty(el))));
+  let meetingInput = meeting.every((el) => !_.isEmpty(el));
+  let datingInput = dating.every((el) => !_.isEmpty(el));
+  let marriedInput = married.every((el) => !_.isEmpty(el));
   if (marriedInput) {
     return (
       <Row className="display">
