@@ -1,6 +1,7 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
-const Form = (props) => {
+import { Formik } from "formik";
+const Form = ({ onUpdate }) => {
   let updatedData = {
     yourName: null,
     soName: null,
@@ -11,136 +12,129 @@ const Form = (props) => {
     marriedDate: null,
   };
 
-  const onFormSubmit = (e) => {
-    e.preventDefault();
-  };
-
-  const onInputChange = (e) => {
-    switch (e.target.name) {
-      case "yourName":
-        updatedData.yourName = e.target.value;
-        break;
-      case "soName":
-        updatedData.soName = e.target.value;
-        break;
-      case "yourBday":
-        updatedData.yourBday = e.target.value;
-        break;
-      case "soBday":
-        updatedData.soBday = e.target.value;
-        break;
-      case "meetDate":
-        updatedData.meetDate = e.target.value;
-        break;
-      case "datingDate":
-        updatedData.datingDate = e.target.value;
-        break;
-      case "marriedDate":
-        updatedData.marriedDate = e.target.value;
-        break;
-      default:
-        break;
-    }
-  };
-  const handleDataChange = () => {
-    console.log(updatedData)
-    props.onUpdate(updatedData);
-  };
   return (
-    <div>
-      <form onSubmit={(e) => onFormSubmit(e)}>
-        <Row>
-          <Col md={6}>
+    <Formik
+      initialValues={updatedData}
+      onSubmit={(values, { setSubmitting }) => {
+        setTimeout(() => {
+          onUpdate(values);
+          setSubmitting(false);
+        }, 400);
+      }}
+    >
+      {({
+        values,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        isSubmitting,
+        /* and other goodies */
+      }) => (
+        <form onSubmit={handleSubmit}>
+          <Row>
+            <Col md={6}>
+              <div className="form-group">
+                <label htmlFor="">Your Name</label>
+                <input
+                  className="form-control"
+                  type="text"
+                  name="yourName"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.yourName}
+                  placeholder="Aragorn"
+                />
+              </div>
+            </Col>
+            <Col md={6}>
+              <div className="form-group">
+                <label htmlFor="">Other Person's Name</label>
+                <input
+                  className="form-control"
+                  type="text"
+                  name="soName"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.soName}
+                  placeholder="Arwen"
+                />
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col md={6}>
+              <div className="form-group">
+                <label htmlFor="">Your Birthday</label>
+                <input
+                  className="form-control"
+                  type="date"
+                  name="yourBday"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.yourBday}
+                />
+              </div>
+            </Col>
+            <Col md={6}>
+              <div className="form-group">
+                <label htmlFor="">Other Person's Birthday</label>
+                <input
+                  className="form-control"
+                  type="date"
+                  name="soBday"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.soBday}
+                />
+              </div>
+            </Col>
+          </Row>
+          <div className="form-group">
+            <label htmlFor="">Date Met</label>
+            <input
+              className="form-control"
+              type="date"
+              name="meetDate"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.meetDate}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="">Date Started Dating (If Applicable)</label>
+            <input
+              className="form-control"
+              type="date"
+              name="datingDate"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.datingDate}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="">Date Married (If Applicable)</label>
+            <input
+              className="form-control"
+              type="date"
+              name="marriedDate"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.marriedDate}
+            />
+          </div>
+          <div className="form-group">
             {" "}
-            <div className="form-group">
-              <p>Your Name</p>
-              <input
-                onChange={(e) => onInputChange(e)}
-                className="form-control"
-                type="text"
-                name="yourName"
-                placeholder="Aragorn"
-              />
-            </div>
-          </Col>
-          <Col md={6}>
-            {" "}
-            <div className="form-group">
-              <p>Other Person's Name</p>
-              <input
-                onChange={(e) => onInputChange(e)}
-                className="form-control"
-                type="text"
-                name="soName"
-                placeholder="Arwen"
-              />
-            </div>
-          </Col>
-        </Row>
-        <Row>
-          <Col md={6}>
-            {" "}
-            <div className="form-group">
-              <p>Your Birthday</p>
-              <input
-                onChange={(e) => onInputChange(e)}
-                className="form-control"
-                type="date"
-                name="yourBday"
-              />
-            </div>
-          </Col>
-          <Col md={6}>
-            {" "}
-            <div className="form-group">
-              <p>Other Person's Birthday</p>
-              <input
-                onChange={(e) => onInputChange(e)}
-                className="form-control"
-                type="date"
-                name="soBday"
-              />
-            </div>
-          </Col>
-        </Row>
-
-        <div className="form-group">
-          <p>Date Met</p>
-          <input
-            onChange={(e) => onInputChange(e)}
-            className="form-control"
-            type="date"
-            name="meetDate"
-          />
-        </div>
-        <div className="form-group">
-          <p>Date Started Dating (If Applicable)</p>
-          <input
-            onChange={(e) => onInputChange(e)}
-            className="form-control"
-            type="date"
-            name="datingDate"
-          />
-        </div>
-        <div className="form-group">
-          <p>Date Married (If Applicable)</p>
-          <input
-            onChange={(e) => onInputChange(e)}
-            className="form-control"
-            type="date"
-            name="marriedDate"
-          />
-        </div>
-        <div className="form-group">
-          <button
-            onClick={()=>handleDataChange()}
-            className="btn btn-lg btn-primary btn-block"
-          >
-            Submit
-          </button>
-        </div>
-      </form>
-    </div>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="btn btn-lg btn-primary btn-block"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      )}
+    </Formik>
   );
 };
 
