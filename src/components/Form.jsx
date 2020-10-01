@@ -19,6 +19,7 @@ const Form = ({ onUpdate }) => {
         setTimeout(() => {
           onUpdate(values);
           setSubmitting(false);
+          window.scrollTo(0, 0)
         }, 400);
       }}
     >
