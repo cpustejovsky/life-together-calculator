@@ -1,8 +1,18 @@
 import React, { useState } from "react";
 import "./App.scss";
 import Display from "./components/Display";
-import Form from "./components/Form.jsx";
+import Form from "./components/Form";
 import { Container } from "react-bootstrap";
+
+export type DateData = {
+  yourName: string,
+  soName: string,
+  yourBday: string,
+  soBday: string,
+  meetDate: string,
+  datingDate?: string,
+  marriedDate?: string,
+}
 
 const App = () => {
   const [yourName, setYourName] = useState("Charles");
@@ -14,16 +24,6 @@ const App = () => {
   const [marriedDate, setMarriedDate] = useState<string>("2018-01-06");
 
   const millisToDays = (millis: number): number => Math.floor(millis / 86400000);
-
-  type DateData = {
-    yourName: string,
-    soName: string,
-    yourBday: string,
-    soBday: string,
-    meetDate: string,
-    datingDate?: string,
-    marriedDate?: string,
-  }
 
   const onUpdate = (data: DateData) => {
     setYourName(data.yourName);

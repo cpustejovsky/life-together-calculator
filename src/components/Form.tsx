@@ -1,15 +1,21 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { Formik } from "formik";
-const Form = ({ onUpdate }) => {
+import { DateData } from "../App"
+type Props = {
+  onUpdate: (data: DateData) => void
+}
+
+const Form = (props: Props) => {
+  const {onUpdate} = props
   let updatedData = {
-    yourName: null,
-    soName: null,
-    yourBday: null,
-    soBday: null,
-    meetDate: null,
-    datingDate: null,
-    marriedDate: null,
+    yourName: "",
+    soName: "",
+    yourBday: "",
+    soBday: "",
+    meetDate: "",
+    datingDate: "",
+    marriedDate: "",
   };
 
   return (
