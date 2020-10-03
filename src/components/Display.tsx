@@ -3,7 +3,22 @@ import _ from "lodash";
 import { Col, Row } from "react-bootstrap";
 import "../App.scss";
 
-const Display = (props) => {
+type Props = {
+  yourName: string,
+  soName: string,
+  yourBday: string,
+  soBday: string,
+  meetDate: string,
+  datingDate: string,
+  marriedDate: string,
+  ageMeet: number,
+  ageDating: number,
+  ageMarried: number,
+  percentUser: string,
+  percentSo: string,
+}
+
+const Display = (props: Props) => {
   const {
     yourName,
     soName,

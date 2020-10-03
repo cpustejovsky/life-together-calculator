@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.scss";
-import Display from "./components/Display.jsx";
+import Display from "./components/Display";
 import Form from "./components/Form.jsx";
 import { Container } from "react-bootstrap";
 
@@ -13,7 +13,7 @@ const App = () => {
   const [datingDate, setDatingDate] = useState<string>("2014-03-10");
   const [marriedDate, setMarriedDate] = useState<string>("2018-01-06");
 
-  const millisToDays = (millis: number) => Math.floor(millis / 86400000);
+  const millisToDays = (millis: number): number => Math.floor(millis / 86400000);
 
   type DateData = {
     yourName: string,
