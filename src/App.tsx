@@ -8,11 +8,11 @@ import { createMuiTheme, ThemeProvider, makeStyles } from "@material-ui/core/sty
 export type DateData = {
   yourName: string,
   soName: string,
-  yourBday: string,
-  soBday: string,
-  meetDate: string,
-  datingDate?: string,
-  marriedDate?: string,
+  yourBday: Date,
+  soBday: Date,
+  meetDate: Date,
+  datingDate?: Date | null,
+  marriedDate?: Date | null,
 }
 
 const theme = createMuiTheme({
@@ -57,11 +57,11 @@ const App = () => {
 
   const [yourName, setYourName] = useState("Charles");
   const [soName, setSoName] = useState("Catherine");
-  const [yourBday, setYourBday] = useState("1992-12-18");
-  const [soBday, setSoBday] = useState("1994-10-12");
-  const [meetDate, setMeetDate] = useState("2014-02-19");
-  const [datingDate, setDatingDate] = useState<string>("2014-03-10");
-  const [marriedDate, setMarriedDate] = useState<string>("2018-01-06");
+  const [yourBday, setYourBday] = useState(new Date("1992-12-18"));
+  const [soBday, setSoBday] = useState(new Date("1994-10-12"));
+  const [meetDate, setMeetDate] = useState(new Date("2014-02-19"));
+  const [datingDate, setDatingDate] = useState<Date | null>(new Date("2014-03-10"));
+  const [marriedDate, setMarriedDate] = useState<Date | null>(new Date("2018-01-06"));
 
   const millisToDays = (millis: number): number => Math.floor(millis / 86400000);
 
@@ -71,17 +71,16 @@ const App = () => {
     setYourBday(data.yourBday);
     setSoBday(data.soBday);
     setMeetDate(data.meetDate);
-    setDatingDate(data.datingDate ? data.datingDate : "");
-    setMarriedDate(data.marriedDate ? data.marriedDate : "");
+    setDatingDate(data.datingDate || null)
+    setMarriedDate(data.marriedDate || null)
   };
 
   const now = new Date().getTime();
-
-  const ageUser = millisToDays(now - new Date(yourBday).getTime());
-  const ageSo = millisToDays(now - new Date(soBday).getTime());
-  const ageMeet = millisToDays(now - new Date(meetDate).getTime());
-  const ageDating = millisToDays(now - new Date(datingDate).getTime());
-  const ageMarried = millisToDays(now - new Date(marriedDate).getTime());
+  const ageUser = millisToDays(now - yourBday.getTime());
+  const ageSo = millisToDays(now - soBday.getTime());
+  const ageMeet = millisToDays(now - meetDate.getTime());
+  const ageDating = datingDate ? millisToDays(now - datingDate.getTime()) : null;
+  const ageMarried = marriedDate ? millisToDays(now - marriedDate.getTime()) : null;
   const percentUser = ((ageMeet / ageUser) * 100).toFixed(2) + "%";
   const percentSo = ((ageMeet / ageSo) * 100).toFixed(2) + "%";
 
@@ -100,11 +99,11 @@ const App = () => {
             ageMarried={ageMarried}
             percentUser={percentUser}
             percentSo={percentSo}
-            yourBday={yourName}
-            soBday={soBday}
-            meetDate={meetDate}
-            datingDate={datingDate}
-            marriedDate={marriedDate}
+            yourBday={new Date(yourBday).toLocaleDateString()}
+            soBday={new Date(soBday).toLocaleDateString()}
+            meetDate={new Date(meetDate).toLocaleDateString()}
+            datingDate={datingDate ? datingDate.toLocaleDateString() : null}
+            marriedDate={marriedDate ? marriedDate.toLocaleDateString() : null}
           />
           <Typography align="center" variant="h4">Try it yourself</Typography>
           <hr style={{ color: "black", height: "1px" }} />

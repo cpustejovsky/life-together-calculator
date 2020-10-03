@@ -33,6 +33,7 @@ const DatePickerField = (props: any) => {
         format="MM/dd/yyyy"
         helperText={currentError}
         error={Boolean(currentError)}
+        value={field.value}
         onError={(error) => {
           // handle as a side effect
           if (error !== currentError) {
@@ -60,11 +61,11 @@ const Form = (props: Props) => {
   let updatedData = {
     yourName: "",
     soName: "",
-    yourBday: "",
-    soBday: "",
-    meetDate: "",
-    datingDate: "",
-    marriedDate: "",
+    yourBday: new Date(),
+    soBday: new Date(),
+    meetDate: new Date(),
+    datingDate: null,
+    marriedDate: null,
   };
 
   return (
@@ -73,6 +74,7 @@ const Form = (props: Props) => {
         initialValues={updatedData}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
+            console.log(values)
             onUpdate(values);
             setSubmitting(false);
             window.scrollTo(0, 0)
@@ -112,8 +114,7 @@ const Form = (props: Props) => {
                 fullWidth
                 className={classes.textField}
               />
-              <Field name="yourBday" label="Your Birthday" component={DatePickerField} />
-              <Field name="soBday" label="Other Person's Birthday" component={DatePickerField} />
+              <Field variant="outlined" name="yourBday" label="Your Birthday" component={DatePickerField} />
               <Field name="soBday" label="Other Person's Birthday" component={DatePickerField} />
               <Field name="meetDate" label="Date Met" component={DatePickerField} />
               <Field name="datingDate" label="Date Started Dating (If Applicable)" component={DatePickerField} />

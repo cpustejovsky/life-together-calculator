@@ -33,18 +33,18 @@ type Props = {
   yourBday: string,
   soBday: string,
   meetDate: string,
-  datingDate: string,
-  marriedDate: string,
+  datingDate: string | null,
+  marriedDate: string | null,
   ageMeet: number,
-  ageDating: number,
-  ageMarried: number,
+  ageDating: number | null,
+  ageMarried: number | null,
   percentUser: string,
   percentSo: string,
 }
 
 const Display = (props: Props) => {
   const classes = useStyles();
-  const {
+  let {
     yourName,
     soName,
     yourBday,
@@ -69,6 +69,9 @@ const Display = (props: Props) => {
     datingDate,
     marriedDate,
   ];
+
+
+
   let insufficientInput = meeting.some((el) => _.isEmpty(el));
   let meetingInput = meeting.every((el) => !_.isEmpty(el));
   let datingInput = dating.every((el) => !_.isEmpty(el));
