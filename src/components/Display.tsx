@@ -1,7 +1,31 @@
 import React from "react";
 import _ from "lodash";
-import { Col, Row } from "react-bootstrap";
-import "../App.scss";
+import { Grid, Typography } from "@material-ui/core"
+import { makeStyles } from "@material-ui/core/styles"
+
+const useStyles = makeStyles((theme) => ({
+  display: {
+    paddingBottom: "3rem",
+    justifyContent: "space-around",
+  },
+  displayBox: {
+    textAlign: "center",
+    marginBottom: "2rem",
+    border: "1px solid #818181",
+    boxShadow: "0px 2px 4px #818181",
+    borderRadius: "10px",
+    width: "fit - content",
+    padding: "5px",
+    "& p": {
+      marginBottom: "0.5rem",
+    }
+  },
+  error: {
+    textAlign: "center",
+    color: theme.palette.error.main,
+    margin: "10vh 0",
+  }
+}));
 
 type Props = {
   yourName: string,
@@ -19,6 +43,7 @@ type Props = {
 }
 
 const Display = (props: Props) => {
+  const classes = useStyles();
   const {
     yourName,
     soName,
@@ -50,22 +75,22 @@ const Display = (props: Props) => {
   let marriedInput = married.every((el) => !_.isEmpty(el));
   if (marriedInput) {
     return (
-      <Row className="display">
-        <Col md={5} className="display__box">
+      <Grid container className={classes.display}>
+        <Grid item md={5} className={classes.displayBox}>
           {" "}
           <p>
             {yourName} has known {soName} <strong>{percentUser}</strong> of
             their lives.
           </p>
-        </Col>
-        <Col md={5} className="display__box">
+        </Grid>
+        <Grid item md={5} className={classes.displayBox}>
           {" "}
           <p>
             {soName} has known {yourName} <strong>{percentSo}</strong> of their
             lives.
           </p>
-        </Col>
-        <Col md={6} className="display__box">
+        </Grid>
+        <Grid item md={6} className={classes.displayBox}>
           <p>
             They met <strong>{ageMeet}</strong> days ago.
           </p>
@@ -75,73 +100,73 @@ const Display = (props: Props) => {
           <p>
             They were married <strong>{ageMarried}</strong> days ago.
           </p>
-        </Col>
-      </Row>
+        </Grid>
+      </Grid>
     );
   } else if (datingInput) {
     return (
-      <Row className="display">
-        <Col md={5} className="display__box">
+      <Grid container className={classes.display}>
+        <Grid item md={5} className={classes.displayBox}>
           {" "}
           <p>
             {yourName} has known {soName} <strong>{percentUser}</strong> of
             their lives.
           </p>
-        </Col>
-        <Col md={5} className="display__box">
+        </Grid>
+        <Grid item md={5} className={classes.displayBox}>
           {" "}
           <p>
             {soName} has known {yourName} <strong>{percentSo}</strong> of their
             lives.
           </p>
-        </Col>
-        <Col md={6} className="display__box">
+        </Grid>
+        <Grid item md={6} className={classes.displayBox}>
           <p>
             They met <strong>{ageMeet}</strong> days ago.
           </p>
           <p>
             They started dating <strong>{ageDating}</strong> days ago.
           </p>
-        </Col>
-      </Row>
+        </Grid>
+      </Grid>
     );
   } else if (meetingInput) {
     return (
-      <Row className="display">
-        <Col md={5} className="display__box">
+      <Grid container className={classes.display}>
+        <Grid item md={5} className={classes.displayBox}>
           {" "}
           <p>
             {yourName} has known {soName} <strong>{percentUser}</strong> of
             their lives.
           </p>
-        </Col>
-        <Col md={5} className="display__box">
+        </Grid>
+        <Grid item md={5} className={classes.displayBox}>
           {" "}
           <p>
             {soName} has known {yourName} <strong>{percentSo}</strong> of their
             lives.
           </p>
-        </Col>
-        <Col md={6} className="display__box">
+        </Grid>
+        <Grid item md={6} className={classes.displayBox}>
           <p>
             They met <strong>{ageMeet}</strong> days ago.
           </p>
-        </Col>
-      </Row>
+        </Grid>
+      </Grid>
     );
   } else if (insufficientInput) {
     return (
-      <h3 className="error">
+      <Typography variant="h5" className={classes.error}>
         Please provide at least <strong>two names</strong>,{" "}
         <strong>two birthdays</strong>, and <strong>the date y'all met</strong>.
-      </h3>
+      </Typography>
     );
   } else {
     return (
-      <h3 className="error">
+      <Typography variant="h5" className={classes.error}>
         Something went wrong. Please contact cpustejovsky about this issue (link
         in the footer)
-      </h3>
+      </Typography>
     );
   }
 };

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import "./App.scss";
 import Display from "./components/Display";
 import Form from "./components/Form";
-import { Container } from "react-bootstrap";
+import Footer from "./components/Footer";
+import { Container, Typography } from "@material-ui/core"
+import { createMuiTheme, ThemeProvider, makeStyles } from "@material-ui/core/styles"
 
 export type DateData = {
   yourName: string,
@@ -14,7 +15,39 @@ export type DateData = {
   marriedDate?: string,
 }
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#757ce8',
+      main: '#3f50b5',
+      dark: '#002884',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#ff7961',
+      main: '#f44336',
+      dark: '#ba000d',
+      contrastText: '#000',
+    },
+    warning: {
+      main: '#CC3300'
+    },
+    error: {
+      main: '#FF0033'
+    }
+  },
+});
+
+const useStyles = makeStyles(() => ({
+  view: {
+    margin: "5vh auto",
+    maxWidth: "600px",
+  }
+}));
+
 const App = () => {
+  const classes = useStyles();
+
   const [yourName, setYourName] = useState("Charles");
   const [soName, setSoName] = useState("Catherine");
   const [yourBday, setYourBday] = useState("1992-12-18");
@@ -46,9 +79,9 @@ const App = () => {
   const percentSo = ((ageMeet / ageSo) * 100).toFixed(2) + "%";
 
   return (
-    <div>
-      <Container className="view">
-        <h1 className="title">Life Together Calculator</h1>
+    <ThemeProvider theme={theme}>
+      <Container className={classes.view}>
+        <Typography variant="h3">Life Together Calculator</Typography>
         <p>
           Add some mathematical precision to your friendship || relationship ||
           marriage.
@@ -70,14 +103,9 @@ const App = () => {
         <h2>Try it yourself</h2>
         <hr />
         <Form onUpdate={onUpdate} />
-        <footer className="footer">
-          <a href="https://cpustejovsky.com/" rel="noreferrer noopener">
-            Cpustejovsky <i className="far fa-thumbs-up"></i>,{" "}
-            {new Date().getFullYear()}
-          </a>
-        </footer>
+      <Footer/>
       </Container>
-    </div>
+    </ThemeProvider>
   );
 };
 
