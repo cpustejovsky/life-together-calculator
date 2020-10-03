@@ -15,7 +15,7 @@ const Footer = () => {
   const classes = useStyles();
 
   return <footer className={classes.footer}>
-    <a href="https://cpustejovsky.com/" rel="noreferrer noopener">
+    <a href="https://cpustejovsky.com/" rel="noreferrer noopener" target="_blank">
       Cpustejovsky <i className="far fa-thumbs-up"></i>,{" "}
       {new Date().getFullYear()}
     </a>

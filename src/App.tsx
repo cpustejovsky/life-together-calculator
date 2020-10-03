@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Display from "./components/Display";
 import Form from "./components/Form";
 import Footer from "./components/Footer";
-import { Container, Typography } from "@material-ui/core"
+import { Container, Typography, CssBaseline } from "@material-ui/core"
 import { createMuiTheme, ThemeProvider, makeStyles } from "@material-ui/core/styles"
 
 export type DateData = {
@@ -17,6 +17,9 @@ export type DateData = {
 
 const theme = createMuiTheme({
   palette: {
+    background: {
+      default: "#002884"
+    },
     primary: {
       light: '#757ce8',
       main: '#3f50b5',
@@ -42,6 +45,10 @@ const useStyles = makeStyles(() => ({
   view: {
     margin: "5vh auto",
     maxWidth: "600px",
+    backgroundColor: "white",
+    padding: "2%",
+    borderRadius: "20px",
+    boxShadow: "0px -2px 5px 3px rgba(255,255,255,0.5)"
   }
 }));
 
@@ -80,31 +87,31 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container className={classes.view}>
-        <Typography align="center" variant="h3">Life Together Calculator</Typography>
-        <p>
-          Add some mathematical precision to your friendship || relationship ||
-          marriage.
-        </p>
-        <Display
-          yourName={yourName}
-          soName={soName}
-          ageMeet={ageMeet}
-          ageDating={ageDating}
-          ageMarried={ageMarried}
-          percentUser={percentUser}
-          percentSo={percentSo}
-          yourBday={yourName}
-          soBday={soBday}
-          meetDate={meetDate}
-          datingDate={datingDate}
-          marriedDate={marriedDate}
-        />
-        <Typography align="center" variant="h4">Try it yourself</Typography>
-        <hr style={{color: "black", height: "1px"}} />
-        <Form onUpdate={onUpdate} />
-        <Footer />
-      </Container>
+      <CssBaseline>
+        <Container className={classes.view}>
+          <Typography paragraph align="center" variant="h3">Life Together Calculator</Typography>
+          <Typography paragraph align="center" variant="subtitle2">Add some mathematical precision to your friendship || relationship ||
+          marriage.</Typography>
+          <Display
+            yourName={yourName}
+            soName={soName}
+            ageMeet={ageMeet}
+            ageDating={ageDating}
+            ageMarried={ageMarried}
+            percentUser={percentUser}
+            percentSo={percentSo}
+            yourBday={yourName}
+            soBday={soBday}
+            meetDate={meetDate}
+            datingDate={datingDate}
+            marriedDate={marriedDate}
+          />
+          <Typography align="center" variant="h4">Try it yourself</Typography>
+          <hr style={{ color: "black", height: "1px" }} />
+          <Form onUpdate={onUpdate} />
+          <Footer />
+        </Container>
+      </CssBaseline>
     </ThemeProvider>
   );
 };
