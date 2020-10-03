@@ -25,9 +25,10 @@ const DatePickerField = (props: any) => {
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <KeyboardDatePicker
+        maxDate={new Date()}
+        openTo="year"
         fullWidth
         clearable
-        disablePast
         name={field.name}
         format="MM/dd/yyyy"
         helperText={currentError}
