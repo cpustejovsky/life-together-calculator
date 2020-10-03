@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Display from "./components/Display";
 import Form from "./components/Form";
 import Footer from "./components/Footer";
-import { Container, Typography } from "@material-ui/core"
+import { Container, Typography, Divider } from "@material-ui/core"
 import { createMuiTheme, ThemeProvider, makeStyles } from "@material-ui/core/styles"
 
 export type DateData = {
@@ -81,7 +81,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Container className={classes.view}>
-        <Typography variant="h3">Life Together Calculator</Typography>
+        <Typography align="center" variant="h3">Life Together Calculator</Typography>
         <p>
           Add some mathematical precision to your friendship || relationship ||
           marriage.
@@ -100,10 +100,10 @@ const App = () => {
           datingDate={datingDate}
           marriedDate={marriedDate}
         />
-        <h2>Try it yourself</h2>
-        <hr />
+        <Typography align="center" variant="h4">Try it yourself</Typography>
+        <hr style={{color: "black", height: "1px"}} />
         <Form onUpdate={onUpdate} />
-      <Footer/>
+        <Footer />
       </Container>
     </ThemeProvider>
   );

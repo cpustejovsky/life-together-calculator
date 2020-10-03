@@ -1,6 +1,6 @@
 import React from "react";
-import { Grid, TextField } from "@material-ui/core";
-import { Formik } from "formik";
+import { Grid, TextField, Button } from "@material-ui/core";
+import { Formik, Field } from "formik";
 import DateFnsUtils from "@date-io/date-fns";
 import {
   MuiPickersUtilsProvider,
@@ -11,6 +11,38 @@ type Props = {
   onUpdate: (data: DateData) => void
 }
 
+const DatePickerField = (props: any) => {
+  const { field, handleBlur, form, label, ...other } = props
+  const currentError = form.errors[field.name];
+  return (
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <KeyboardDatePicker
+        fullWidth
+        clearable
+        disablePast
+        name={field.name}
+        format="MM/dd/yyyy"
+        helperText={currentError}
+        error={Boolean(currentError)}
+        onError={(error) => {
+          // handle as a side effect
+          if (error !== currentError) {
+            form.setFieldError(field.name, error);
+          }
+        }}
+        // if you are using custom validation schema you probably want to pass `true` as third argument
+        onChange={(date) => form.setFieldValue(field.name, date, false)}
+        {...other}
+        KeyboardButtonProps={{
+          "aria-label": "change date",
+        }}
+        onBlur={handleBlur}
+        label={label}
+        margin="normal"
+      />
+    </MuiPickersUtilsProvider>
+  );
+};
 
 
 const Form = (props: Props) => {
@@ -46,7 +78,6 @@ const Form = (props: Props) => {
           /* and other goodies */
         }) => (
             <form onSubmit={handleSubmit}>
-
               <TextField
                 type="text"
                 name="yourName"
@@ -56,8 +87,8 @@ const Form = (props: Props) => {
                 placeholder="Aragorn"
                 label="Your Name"
                 variant="outlined"
+                fullWidth
               />
-
               <TextField
                 type="text"
                 name="soName"
@@ -67,92 +98,26 @@ const Form = (props: Props) => {
                 placeholder="Arwen"
                 label="Other Person's Name"
                 variant="outlined"
+                fullWidth
               />
-              <TextField
-                type="date"
-                name="yourBday"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.yourBday}
-                label="Your Birthday"
-                variant="outlined"
-                placeholder="hello"
-              />
-              <br />
-              <br />
-              <br />
-              <br />
-              <Grid container>
-                <Grid item md={6}>
-                  <div className="form-group">
-                    <label htmlFor="">Your Birthday</label>
-                    <input
-                      className="form-control"
-                      type="date"
-                      name="yourBday"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.yourBday}
-                    />
-                  </div>
-                </Grid>
-                <Grid item md={6}>
-                  <div className="form-group">
-                    <label htmlFor="">Other Person's Birthday</label>
-                    <input
-                      className="form-control"
-                      type="date"
-                      name="soBday"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.soBday}
-                    />
-                  </div>
-                </Grid>
-              </Grid>
-              <div className="form-group">
-                <label htmlFor="">Date Met</label>
-                <input
-                  className="form-control"
-                  type="date"
-                  name="meetDate"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.meetDate}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="">Date Started Dating (If Applicable)</label>
-                <input
-                  className="form-control"
-                  type="date"
-                  name="datingDate"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.datingDate}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="">Date Married (If Applicable)</label>
-                <input
-                  className="form-control"
-                  type="date"
-                  name="marriedDate"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.marriedDate}
-                />
-              </div>
-              <div className="form-group">
-                {" "}
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="btn btn-lg btn-primary btn-block"
-                >
-                  Submit
-            </button>
-              </div>
+              <Field name="yourBday" label="Your Birthday" component={DatePickerField} />
+              <Field name="soBday" label="Other Person's Birthday" component={DatePickerField} />
+              <Field name="soBday" label="Other Person's Birthday" component={DatePickerField} />
+              <Field name="meetDate" label="Date Met" component={DatePickerField} />
+              <Field name="datingDate" label="Date Started Dating (If Applicable)" component={DatePickerField} />
+              <Field name="marriedDate" label="Date Married (If Applicable)" component={DatePickerField} />
+
+              <Button
+                size="large"
+                fullWidth
+                variant="contained"
+                color="primary"
+                disabled={isSubmitting}
+                onClick={() => handleSubmit()}
+              >
+                Submit
+            </Button>
+
             </form>
           )}
       </Formik>
