@@ -6,10 +6,18 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
+import { makeStyles } from "@material-ui/core/styles"
 import { DateData } from "../App"
 type Props = {
   onUpdate: (data: DateData) => void
 }
+
+const useStyles = makeStyles(() => ({
+  textField: {
+    margin: "5px auto",
+
+  }
+}));
 
 const DatePickerField = (props: any) => {
   const { field, handleBlur, form, label, ...other } = props
@@ -46,6 +54,7 @@ const DatePickerField = (props: any) => {
 
 
 const Form = (props: Props) => {
+  const classes = useStyles();
   const { onUpdate } = props
   let updatedData = {
     yourName: "",
@@ -88,6 +97,7 @@ const Form = (props: Props) => {
                 label="Your Name"
                 variant="outlined"
                 fullWidth
+                className={classes.textField}
               />
               <TextField
                 type="text"
@@ -99,6 +109,7 @@ const Form = (props: Props) => {
                 label="Other Person's Name"
                 variant="outlined"
                 fullWidth
+                className={classes.textField}
               />
               <Field name="yourBday" label="Your Birthday" component={DatePickerField} />
               <Field name="soBday" label="Other Person's Birthday" component={DatePickerField} />

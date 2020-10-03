@@ -10,8 +10,8 @@ Add some mathematical precision to your friendship || relationship || marriage.
 4. ~~destructure `this.props` into render call as `const` variables at the top of the function.~~
 5. ~~Use an `any` function from a library like Ramda or Lodash to replace the chained null checks.~~
 7. ~~Look into libraries like Formik for handling form validation and lifecycle management.~~
-8. Refactor to TypeScript
-9. Replace Boostrap with Material UI.
+8. ~~Refactor to TypeScript~~
+9. ~~Replace Boostrap with Material UI.~~
 10. Use Yup for enforcing a schema to form values.
 
 <hr>

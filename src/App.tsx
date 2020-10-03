@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Display from "./components/Display";
 import Form from "./components/Form";
 import Footer from "./components/Footer";
-import { Container, Typography, Divider } from "@material-ui/core"
+import { Container, Typography } from "@material-ui/core"
 import { createMuiTheme, ThemeProvider, makeStyles } from "@material-ui/core/styles"
 
 export type DateData = {
